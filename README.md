@@ -43,7 +43,7 @@ The provider supports browsing `/photos`, searching `/search/photos`, refreshing
 
 The returned `MediaProviderItem.meta` includes photographer, photo, attribution links, and Unsplash's download tracking location. The host must show linked photographer and Unsplash credit wherever it displays a selected photo, including in the editor and on public pages. It must use the supplied Unsplash image URLs rather than copying image bytes into its own storage. When an editor chooses an image for a post or comparable use, the host must call Unsplash's download endpoint. This package exports `UnsplashClient.trackDownload(id, downloadLocation)` for that call, but it does not trigger it automatically because EmDash 1.0.1 has no media selection hook.
 
-The [su-gloria site](https://github.com/danielnv18/su-gloria) has an example native content-save plugin and D1 retry queue for tracking new placements, public attribution rendering, and a version-specific admin picker patch for editor credit. Those pieces are site code, not included in this npm package. A site that installs only this package must supply its own equivalent integration. The site owner must also provide the privacy policy and Unsplash application setup required for its deployment.
+The host site must provide its own integration for public attribution and download tracking. The site owner must also provide the privacy policy and Unsplash application setup required for its deployment.
 
 This is a native media provider installed through npm and configured in `astro.config.mjs`. It is not a sandboxed EmDash registry plugin. The provider runtime runs in the host process, reads the configured secret, and makes requests to `api.unsplash.com`; review it as trusted site code. The [sandboxed plugin CLI tutorial](https://docs.emdashcms.com/plugins/creating-plugins/your-first-plugin/) scaffolds a different plugin format and cannot register a media provider tab.
 
@@ -64,4 +64,4 @@ The `prepack` script builds `dist/` before `npm pack` or `npm publish`. Inspect 
 
 The `emdash-media-unsplash/admin-cache` browser helper caches successful browsing and search results in local storage until local midnight. It limits stored pages, deduplicates concurrent requests, and falls back to memory when browser storage is unavailable. The cache contains public photo metadata, not credentials or drafts. Thumbnail preloading uses the original hotlinked URLs and is best effort.
 
-This helper requires integration with the host's admin UI. It does not automatically provide picker attribution, public credits, or download tracking. The su-gloria site maintains a version-specific EmDash admin patch for its picker.
+This helper requires integration with the host's admin UI. It does not automatically provide picker attribution, public credits, or download tracking.
