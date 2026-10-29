@@ -1,18 +1,16 @@
 {
   "name": "emdash-media-unsplash",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "description": "Unsplash media provider for EmDash",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/danielnv18/emdash-media-unsplash.git"
-  },
+  "repository": { "type": "git", "url": "https://github.com/danielnv18/emdash-media-unsplash.git" },
   "bugs": "https://github.com/danielnv18/emdash-media-unsplash/issues",
   "keywords": ["emdash", "media-provider", "unsplash"],
   "exports": {
     ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
     "./runtime": { "types": "./dist/runtime.d.ts", "default": "./dist/runtime.js" },
+    "./admin-cache": { "types": "./dist/admin-cache.d.ts", "default": "./dist/admin-cache.js" },
     "./api": { "types": "./dist/api/client.d.ts", "default": "./dist/api/client.js" },
     "./mapping": { "types": "./dist/mapping/unsplash-to-emdash.d.ts", "default": "./dist/mapping/unsplash-to-emdash.js" }
   },

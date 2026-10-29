@@ -13,7 +13,7 @@ npm run build
 pnpm add /path/to/emdash-media-unsplash
 ```
 
-This package is not published to npm yet. A site can use the local checkout above until an npm release is available.
+The repository contains the source package. A site can install it from a checkout until an npm release is available.
 
 Register the provider in the site's `astro.config.mjs`:
 
@@ -58,3 +58,10 @@ npm pack --dry-run
 ```
 
 The `prepack` script builds `dist/` before `npm pack` or `npm publish`. Inspect the tarball contents and test the packed package in an EmDash site before publishing. The package exports its descriptor from `.` and its EmDash runtime from `./runtime`.
+
+
+## Admin caching
+
+The `emdash-media-unsplash/admin-cache` browser helper caches successful browsing and search results in local storage until local midnight. It limits stored pages, deduplicates concurrent requests, and falls back to memory when browser storage is unavailable. The cache contains public photo metadata, not credentials or drafts. Thumbnail preloading uses the original hotlinked URLs and is best effort.
+
+This helper requires integration with the host's admin UI. It does not automatically provide picker attribution, public credits, or download tracking. The su-gloria site maintains a version-specific EmDash admin patch for its picker.
